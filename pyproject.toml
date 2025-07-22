@@ -1,0 +1,18 @@
+[project]
+name = "muha-deliverable"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "bioacoustics-model-zoo",
+    "lancedb>=0.24.1",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.30.0",
+]
+
+[tool.uv.sources]
+bioacoustics-model-zoo = { git = "https://github.com/kitzeslab/bioacoustics-model-zoo" }
