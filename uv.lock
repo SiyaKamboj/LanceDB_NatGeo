@@ -1461,29 +1461,6 @@ wheels = [
 ]
 
 [[package]]
-name = "muha-deliverable"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "bioacoustics-model-zoo" },
-    { name = "lancedb" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "ipykernel" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "bioacoustics-model-zoo", git = "https://github.com/kitzeslab/bioacoustics-model-zoo" },
-    { name = "lancedb", specifier = ">=0.24.1" },
-]
-
-[package.metadata.requires-dev]
-dev = [{ name = "ipykernel", specifier = ">=6.30.0" }]
-
-[[package]]
 name = "multidict"
 version = "6.6.3"
 source = { registry = "https://pypi.org/simple" }
@@ -3171,6 +3148,29 @@ sdist = { url = "https://files.pythonhosted.org/packages/15/22/9ee70a2574a4f4599
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a7/c2/fe1e52489ae3122415c51f387e221dd0773709bad6c6cdaa599e8a2c5185/urllib3-2.5.0-py3-none-any.whl", hash = "sha256:e6b01673c0fa6a13e374b50871808eb3bf7046c4b125b216f6bf1cc604cff0dc", size = 129795, upload-time = "2025-06-18T14:07:40.39Z" },
 ]
+
+[[package]]
+name = "uv-venv-music"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "bioacoustics-model-zoo" },
+    { name = "lancedb" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "ipykernel" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "bioacoustics-model-zoo", git = "https://github.com/kitzeslab/bioacoustics-model-zoo" },
+    { name = "lancedb", specifier = ">=0.24.1" },
+]
+
+[package.metadata.requires-dev]
+dev = [{ name = "ipykernel", specifier = ">=6.30.0" }]
 
 [[package]]
 name = "wandb"
