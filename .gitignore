@@ -9,3 +9,5 @@ database/
 
 # Virtual environments
 .venv
+
+wavFiles
