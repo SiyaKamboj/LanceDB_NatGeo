@@ -20,7 +20,7 @@ export default function App() {
   const [dbPath, setDbPath] = useState("");
   const [audioDir, setAudioDir] = useState("");
   const [queryAudioDir, setQueryAudioDir] = useState("");
-  const [topK, setTopK] = useState(5);
+  const [topK, setTopK] = useState(1);
   const [dbResult, setDbResult] = useState(null);
   const [audioResult, setAudioResult] = useState(null);
   const [dbLoading, setDbLoading] = useState(false);
@@ -99,11 +99,11 @@ export default function App() {
   return (
     <main className="container">
       <h1>LanceDB Audio Setup</h1>
-      <p className="subtitle">Configure database and source audio paths.</p>
+      {/* <p className="subtitle">Configure database and source audio paths.</p> */}
 
       <form onSubmit={handleDbSubmit} className="card">
-        <h2>Database path</h2>
-        <label htmlFor="dbPath">LanceDB path</label>
+        <h2>LanceDB Database path</h2>
+        <label htmlFor="dbPath">Creates a new database at this directory, if it does not exist. OR connects to the existing one, if it does exist.</label>
         <input
           id="dbPath"
           value={dbPath}
@@ -137,7 +137,7 @@ export default function App() {
 
       <form onSubmit={handleAudioDirSubmit} className="card">
         <h2>Audio directory</h2>
-        <label htmlFor="audioDir">Directory path</label>
+        <label htmlFor="audioDir">Directory path for what audio files to insert into the database. Audio files are found recursively within this directory.</label>
         <input
           id="audioDir"
           value={audioDir}
@@ -163,7 +163,7 @@ export default function App() {
           {/* <p>
             <strong>Extensions:</strong> {audioResult.supported_extensions.join(", ")}
           </p> */}
-          <p>Directory is validated and ready for embedding ingestion.</p>
+          <p>Directory is valid!</p>
         </section>
       ) : null}
 
