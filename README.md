@@ -68,7 +68,42 @@ npm install
 npm run dev
 ```
 
-Frontend runs at `http://localhost:5173` & u should open up this link in the browser. 
+Frontend runs at `http://localhost:5173` & u should open up this link in the browser.
+
+### If you’re ingesting a large number of files
+You can safely close your terminals or tabs while ingestion is running in the background.
+
+#### 1. Check if ingestion is still running
+Open a new terminal and run: `tmux ls`
+
+This will show a list of active sessions, for example: `0: 1 windows (created xxxxxx)`
+
+#### 2. Reconnect to the session
+To view the ingestion progress, attach to the session: `tmux attach-session -t 0`
+
+
+Replace `0` with the session number shown on the left.
+
+You should now see the ingestion process (e.g., a progress bar).
+
+#### 3. Detach without stopping the process
+To leave the session while keeping ingestion running:
+- Press `Ctrl + b`, then press `d`
+
+This returns you to your normal terminal, but the process continues in the background.
+
+#### 4. Repeat as needed
+You can reattach (`tmux attach-session -t #`) and detach (`Ctrl + b`, then `d`) at any time to check progress.
+
+#### 5. End the session (only when ingestion is complete)
+Once all audio files have been ingested and are in the table, you can stop the session: `tmux kill-session -t 0`
+
+PLEASE NOTE: Only do this after ingestion is fully complete.
+
+---
+
+After that, you can restart the frontend and backend using the instructions above and begin querying the database.
+
 
 <!-- ### Current UI behavior
 

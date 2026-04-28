@@ -1,4 +1,6 @@
 from pathlib import Path
+import re
+import shlex
 import tempfile
 
 import bioacoustics_model_zoo as bmz
@@ -43,6 +45,19 @@ SUPPORTED_AUDIO_EXTENSIONS = {
     ".caf",
     ".mp2",
 }
+
+
+def unescape_path(path_str):
+    """Unescape shell-style backslash escapes in path strings."""
+    try:
+        parts = shlex.split(path_str)
+        if len(parts) == 1:
+            return parts[0]
+        else:
+            # If it splits into multiple parts, assume it's not escaped and return as is
+            return path_str
+    except:
+        return path_str
 
 
 class DbInitRequest(BaseModel):
@@ -158,7 +173,7 @@ def init_db(payload: DbInitRequest):
 
 @app.post("/api/audio-directory")
 def set_audio_directory(payload: AudioDirectoryRequest):
-    directory = Path(payload.audio_dir).expanduser()
+    directory = Path(unescape_path(payload.audio_dir)).expanduser()
     if not directory.exists() or not directory.is_dir():
         raise HTTPException(status_code=400, detail="Audio directory does not exist or is not a directory.")
 
@@ -173,7 +188,7 @@ def set_audio_directory(payload: AudioDirectoryRequest):
 @app.post("/api/ingest")
 def ingest_audio_embeddings(payload: IngestRequest):
     db_path = Path(payload.db_path).expanduser()
-    audio_dir = Path(payload.audio_dir).expanduser()
+    audio_dir = Path(unescape_path(payload.audio_dir)).expanduser()
 
     if not audio_dir.exists() or not audio_dir.is_dir():
         raise HTTPException(status_code=400, detail="Audio directory does not exist or is not a directory.")
@@ -244,7 +259,7 @@ def ingest_audio_embeddings(payload: IngestRequest):
 @app.post("/api/query")
 def query_audio_directory(payload: QueryRequest):
     db_path = Path(payload.db_path).expanduser()
-    query_audio_dir = Path(payload.query_audio_dir).expanduser()
+    query_audio_dir = Path(unescape_path(payload.query_audio_dir)).expanduser()
     top_k = payload.top_k
 
     if not query_audio_dir.exists() or not query_audio_dir.is_dir():
