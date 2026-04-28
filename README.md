@@ -50,7 +50,9 @@ In each cell, I have placed some comments describing what the code is doing, but
 From project root:
 
 ```bash
+tmux
 uv sync
+source .venv/bin/activate
 uv run uvicorn backend.app:app --reload
 ```
 
